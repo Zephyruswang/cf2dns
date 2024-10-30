@@ -10,9 +10,11 @@ on:
 env:
   UPDATE_IPV4: true
   UPDATE_IPV6: false
+  ACTIONS_STEP_DEBUG: true  # 启用调试
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3  # 设置超时时间
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
@@ -38,3 +40,5 @@ jobs:
           SECRETID: ${{ secrets.SECRETID }}
           SECRETKEY: ${{ secrets.SECRETKEY }}
         run: python cf2dns_actions.py AAAA
+      - name: 'Wait before cleanup'
+        run: sleep 10  # 等待 10 秒
