@@ -13,14 +13,13 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5  # 设置超时时间
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v4.2.2
       - name: 'Set up Python'
         uses: actions/setup-python@v5.3.0
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: 'Install dependencies'
         run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: 'run cf2dns v4'
